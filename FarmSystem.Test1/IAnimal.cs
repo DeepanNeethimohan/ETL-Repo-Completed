@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace FarmSystem.Test1
 {
+    /// <summary>
+    /// Animal and its Activities
+    /// </summary>
     public interface IAnimal
     {
         void EnterFarm();
