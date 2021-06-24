@@ -12,32 +12,32 @@ namespace FarmSystem.Test1
     public delegate void EmptyQueue();
     
     /// <summary>
-    /// Custom Queue Class
+    /// Custom Generic Queue Class
     /// </summary>
-    public class AnimalQueue<T>: Queue
+    public class CustomQueue<T>: Queue
     {
-        public event AddtoQueue onAddtoFarm;
-        public event ReleasefromQueue onReleasefromFarm;
-        public event EmptyQueue onFarmEmpty;
+        public event AddtoQueue onEnqueue;
+        public event ReleasefromQueue onDequeue;
+        public event EmptyQueue onEmpty;
       
         public override void Enqueue(object obj)
         {
             base.Enqueue(obj);
-            if(onAddtoFarm != null)
-                onAddtoFarm(obj);
+            if(onEnqueue != null)
+                onEnqueue(obj);
         }
 
         public override object Dequeue()
         {
             var obj = base.Dequeue();
 
-            if(onReleasefromFarm != null)
-                onReleasefromFarm(obj);
+            if(onDequeue != null)
+                onDequeue(obj);
 
             if (base.Count == 0)
             {
-                if (onFarmEmpty != null)
-                    onFarmEmpty();
+                if (onEmpty != null)
+                    onEmpty();
             }
             return obj;
         }

@@ -8,13 +8,18 @@ namespace FarmSystem.Test1
     public class EmydexFarmSystem
     {
         //Queue of all animals entering into the Farm
-        private AnimalQueue<IAnimal> animalFarm = new AnimalQueue<IAnimal>();
+        private CustomQueue<IAnimal> animalFarm = new CustomQueue<IAnimal>();
         
         public EmydexFarmSystem()
         {
-            animalFarm.onAddtoFarm += AddAnimalToFarm;
-            animalFarm.onReleasefromFarm += ReleaseAnimalfromFaam;
-            animalFarm.onFarmEmpty += FarmEmpty;
+            RegisterFarmActivities();
+        }
+
+        private void RegisterFarmActivities()
+        {
+            animalFarm.onEnqueue += AddAnimalToFarm;
+            animalFarm.onDequeue += ReleaseAnimalfromFaam;
+            animalFarm.onEmpty += FarmEmpty;
         }
 
         //TEST 1
@@ -27,7 +32,7 @@ namespace FarmSystem.Test1
 
             //Push the unknown animal out of the farm
             if (farmanimal == null)
-                Console.WriteLine("Unknow Animal Entered the Farm");
+                Console.WriteLine("Unknown Animal Entered the Farm");
             else
                 animalFarm.Enqueue(animal);
         }

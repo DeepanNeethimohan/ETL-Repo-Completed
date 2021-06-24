@@ -51,7 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnimalQueue.cs" />
+    <Compile Include="Animal.cs" />
+    <Compile Include="CustomQueue.cs" />
     <Compile Include="Cow.cs" />
     <Compile Include="EmydexFarmSystem.cs" />
     <Compile Include="Horse.cs" />

@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace FarmSystem.Test1
 {
     internal class Program
     {
-       
+        private static List<Animal> _allfarmanimals;
+
         private static void Main(string[] args)
         {
+            RecordAllAnimals();
+
             Excercise1();
             Excercise2();
             Excercise3();
@@ -14,24 +18,36 @@ namespace FarmSystem.Test1
             Console.ReadKey();
         }
 
-/************************************************************************************************************
-Exercise 1 : Apply OOP concepts (abstraction and encapsulation) to the classes 
-modify the code to get the output below
-Cow has entered the farm
-Hen has entered the farm
-Horse has entered the farm
-Sheep has entered the farm
-***************************************************************************************************************/
+        private static void RecordAllAnimals()
+        {
+            Animal cow = new Animal(new Cow() { Id = Guid.NewGuid().ToString(), NoOfLegs = 4 });
+            Animal hen = new Animal(new Hen() { Id = Guid.NewGuid().ToString(), NoOfLegs = 4 });
+            Animal horse = new Animal(new Horse() { Id = Guid.NewGuid().ToString(), NoOfLegs = 4 });
+            Animal sheep = new Animal(new Sheep() { Id = Guid.NewGuid().ToString(), NoOfLegs = 4 });
+
+            _allfarmanimals = new List<Animal>() { cow, hen, horse, sheep };
+        }
+
+        /************************************************************************************************************
+        Exercise 1 : Apply OOP concepts (abstraction and encapsulation) to the classes 
+        modify the code to get the output below
+        Cow has entered the farm
+        Hen has entered the farm
+        Horse has entered the farm
+        Sheep has entered the farm
+        ***************************************************************************************************************/
         private static void Excercise1()
         {
             Console.WriteLine("Exercise 1 : Press any key when it is time to open the Farm to animals");
             Console.ReadKey();
+
             var farm = new EmydexFarmSystem();
-            Cow cow = new Cow();
+
+            /*Cow cow = new Cow();
             cow.Id = Guid.NewGuid().ToString();
             cow.NoOfLegs = 4;
             farm.Enter(cow);
- 
+
             Hen hen = new Hen();
             hen.Id = Guid.NewGuid().ToString();
             cow.NoOfLegs = 4;
@@ -45,33 +61,47 @@ Sheep has entered the farm
             Sheep sheep = new Sheep();
             sheep.Id = Guid.NewGuid().ToString();
             sheep.NoOfLegs = 4;
-            farm.Enter(sheep);
+            farm.Enter(sheep);*/
+
+            //Let in All animals to EmydexFarm
+            LetinAllAnimalstoFarm(farm);
+
             Console.ReadKey();
         }
 
-/***************************************************************************************************************
- Test Excercise 2
- If you have completed the first test excercise, you can continue with the second one
- Modify the program and EmydexFarmSystem.MakeNoise() method to get the below output
- Expected Test 2 Program Output
+        private static void LetinAllAnimalstoFarm(EmydexFarmSystem farm)
+        {
+           
+            foreach (Animal animal in _allfarmanimals)
+            {
+                farm.Enter(animal.GetAnimal());
+            }
+        }
 
- Exercise 2 : Press any key to scare the animals in the farm
-    Cow has entered the farm
-    Hen has entered the farm
-    Horse has entered the farm
-    Sheep has entered the farm
-    Cow says Moo!
-    Hen says CLUCKAAAAAWWWWK!
-    Horse says Neigh!
-    Sheep says baa!
- *****************************************************************************************************************/
+        /***************************************************************************************************************
+         Test Excercise 2
+         If you have completed the first test excercise, you can continue with the second one
+         Modify the program and EmydexFarmSystem.MakeNoise() method to get the below output
+         Expected Test 2 Program Output
+
+         Exercise 2 : Press any key to scare the animals in the farm
+            Cow has entered the farm
+            Hen has entered the farm
+            Horse has entered the farm
+            Sheep has entered the farm
+            Cow says Moo!
+            Hen says CLUCKAAAAAWWWWK!
+            Horse says Neigh!
+            Sheep says baa!
+         *****************************************************************************************************************/
         private static void Excercise2()
         {
             //TODO : Apply OOP concepts and modify the code below to get the required output 
             Console.WriteLine("Exercise 2 : Press any key to scare the animals in the farm");
             Console.ReadKey();
             var farm = new EmydexFarmSystem();
-            Cow cow = new Cow();
+
+            /*Cow cow = new Cow();
             cow.Id = Guid.NewGuid().ToString();
             cow.NoOfLegs = 4;
             farm.Enter(cow);
@@ -89,8 +119,12 @@ Sheep has entered the farm
             Sheep sheep = new Sheep();
             sheep.Id = Guid.NewGuid().ToString();
             sheep.NoOfLegs = 4;
-            farm.Enter(sheep);
-            
+            farm.Enter(sheep);*/
+
+            //Let in All animals to EmydexFarm
+            LetinAllAnimalstoFarm(farm);
+
+            //Scare the animals
             farm.MakeNoise();
             Console.ReadKey();
         }
@@ -116,7 +150,8 @@ Cow was milked!
             Console.WriteLine("Exercise 3 : Press any key when it is time to milk animals");
             Console.ReadKey();
             var farm = new EmydexFarmSystem();
-            Cow cow = new Cow();
+
+            /*Cow cow = new Cow();
             cow.Id = Guid.NewGuid().ToString();
             cow.NoOfLegs = 4;
             farm.Enter(cow);
@@ -134,8 +169,12 @@ Cow was milked!
             Sheep sheep = new Sheep();
             sheep.Id = Guid.NewGuid().ToString();
             sheep.NoOfLegs = 4;
-            farm.Enter(sheep);
+            farm.Enter(sheep);*/
 
+            //Let in All animals to EmydexFarm
+            LetinAllAnimalstoFarm(farm);
+
+            //Milk animals
             farm.MilkAnimals();
             Console.ReadKey();
         }
@@ -165,7 +204,8 @@ Emydex Farm is now empty
             Console.WriteLine("Exercise 4: Press any key to free all animals");
             Console.ReadKey();
             var farm = new EmydexFarmSystem();
-            Cow cow = new Cow();
+
+            /*Cow cow = new Cow();
             cow.Id = Guid.NewGuid().ToString();
             cow.NoOfLegs = 4;
             farm.Enter(cow);
@@ -183,8 +223,12 @@ Emydex Farm is now empty
             Sheep sheep = new Sheep();
             sheep.Id = Guid.NewGuid().ToString();
             sheep.NoOfLegs = 4;
-            farm.Enter(sheep);
+            farm.Enter(sheep);*/
 
+            //Let in All animals to EmydexFarm
+            LetinAllAnimalstoFarm(farm);
+
+            //Release all Animals from the farm
             farm.ReleaseAllAnimals();
             Console.ReadKey();
         }
